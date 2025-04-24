@@ -1,0 +1,25 @@
+name: Maven CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 저장소 클론
+      uses: actions/checkout@v3
+
+    - name: ☕ JDK 설정
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'   # 또는 프로젝트에 맞는 버전
+
+    - name: 🔨 Maven 빌드
+      run: mvn clean install
